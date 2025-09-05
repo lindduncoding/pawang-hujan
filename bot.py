@@ -3,6 +3,14 @@ from dotenv import load_dotenv
 import discord
 import re
 import random
+import logging
+
+# Logging
+logging.basicConfig(
+    filename="logs/pawang_hujan_bot.log",
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(message)s",
+)
 
 # Load Bot's Token
 load_dotenv()
@@ -19,13 +27,12 @@ phase_patterns = {
     ],
     # User finds/was given a potentially vulnerable AWS service
     "enum": [
-        r"\b(find|list|discover|enum(erate)?|given)\b",
-        r"\b(bucket|account|recon|scan|ec2|compute|metadata|ebs|snapshot|iam|role|policy)\b"
+        r"\b(find|list|discover(ed)?|enum(erate)?|given|found)\b"
     ],
     # User is certain the service is vulnerable and tries to find a way to escalate privilege
     "exploit": [
         r"\b(exploit|misconfig(uration)?|ssrf|leaked creds?|credential(s)?)\b",
-        r"\b(privesc|privilege escalation|attach policy|vulnerable|vulnerability|write|permission)\b"
+        r"\b(privesc|privilege escalation|escalate|privilege|attach policy|vulnerable|vulnerability|write|permission)\b"
     ],
     # User is privileged, but desires to keep it
     "persist": [
@@ -59,8 +66,7 @@ responses = {
     "enum": {
         "s3": [
             "You can enumerate S3 buckets with `aws s3 ls` or tools like cloud_enum / ScoutSuite.",
-            "Try accessing the bucket you found: `http://bucket-name.s3.amazonaws.com/`.",
-            "Try the possibility of an older version existing."
+            "Try accessing the bucket you found: `http://bucket-name.s3.amazonaws.com/`."
         ],
         "ec2": [
             "Try running `aws ec2 describe-instances` and don't forget your region.",

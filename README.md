@@ -68,7 +68,7 @@ However, real life pentesting process **might not always be this predictable** s
 
 The bot's AWS pentesing knowledge comes from my personal experience in cloud security and these wonderful guides:
 1. [HackingTheCloud](https://hackingthe.cloud/aws/general-knowledge/connection-tracking/)
-2. [HackTricks Cloud](cloud.hacktricks.wiki/en/pentesting-cloud/aws-security/index.html)
+2. [HackTricks Cloud](https://cloud.hacktricks.wiki/en/pentesting-cloud/aws-security/index.html)
 
 For a more hands on experience I suggest you to play these labs:
 1. [CloudGoat: Vulnerable by Design Cloud Deployment](https://github.com/RhinoSecurityLabs/cloudgoat)

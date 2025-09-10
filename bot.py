@@ -31,7 +31,7 @@ phase_patterns = {
     ],
     # User is certain the service is vulnerable and tries to find a way to escalate privilege
     "exploit": [
-        r"\b(exploit|misconfig(uration)?|ssrf|leaked creds?|credential(s)?)\b",
+        r"\b(exploit|misconfig(uration)?|ssrf|leaked creds?|credential(s)?|bypass)\b",
         r"\b(privesc|privilege escalation|escalate|privilege|attach policy|vulnerable|vulnerability|write|permission)\b"
     ],
     # User is privileged, but desires to keep it
@@ -46,11 +46,11 @@ phase_patterns = {
 
 # Recognition for common AWS services (S3, EC2, EBS, IAM, DynamoDB, etc)
 service_patterns = {
-    "s3": r"\b(bucket|s3|object|leak?|leaky)\b",
+    "s3": r"\b(bucket|s3|object)\b",
     "ec2": r"\b(ec2|instance|compute|shell|machine image)\b",
     "iam": r"\b(iam|role|policy|user|creds?|credential(s)?)\b",
     "ebs": r"\b(ebs|snapshot|volume)\b",
-    "cognito": r"\b(cognito|sign up|default|bypass)\b",
+    "cognito": r"\b(cognito|sign up|default)\b",
     "dynamodb": r"\b(dynamodb|database|nosql|table)\b",
     "lambda" :r"\b(lambda|function|serverless|application code|event)\b"
 }
@@ -230,4 +230,5 @@ async def on_message(message):
     if response:
         await message.channel.send(response)
 
-client.run(TOKEN)
+if __name__ == "__main__":
+    client.run(TOKEN)

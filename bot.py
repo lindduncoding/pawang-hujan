@@ -63,6 +63,11 @@ responses = {
             "Hi! Ready to pwn AWS?"
         ]
     },
+    "default": {
+        "default": [
+            "I'm not quite sure what you're asking of. Try asking a cloud hacking question."
+        ]
+    },
     "enum": {
         "s3": [
             "You can enumerate S3 buckets with `aws s3 ls` or tools like cloud_enum / ScoutSuite.",
@@ -199,7 +204,7 @@ def detect_phase(message: str):
         for pat in patterns:
             if re.search(pat, message, re.IGNORECASE):
                 return phase
-    return None
+    return "default"
 
 def detect_service(message: str):
     for service, pat in service_patterns.items():
